@@ -26,6 +26,7 @@
 Agents can only choose the score limit at which they would like to stop drawing a card. They cannot choose whether to draw the next individual card, this is predetermined by the limit.
 
 ## empirical_analysis
+The empirical analysis concluded that  playing the >= 20 strategy is nash equilibrium thought the >= 21 strategy is a very close contender.
 
 
 ## statistical_analysis

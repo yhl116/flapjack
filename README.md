@@ -11,6 +11,7 @@
 * A's can be treated as either 1 or 11 (positive or negative depending on the colour of the suit).
 * Points are converted to a "score" based on the score table.
 * Players with the higher score win the game.
+* Players go bust and automatically gets 0 score if at any point in the game draws > 25 points.
 
 ## Score Table
 
@@ -27,7 +28,6 @@ Agents can only choose the score limit at which they would like to stop drawing 
 
 ## empirical_analysis
 The empirical analysis concluded that  playing the >= 20 strategy is nash equilibrium thought the >= 21 strategy is a very close contender.
-
 
 ## statistical_analysis
 TBC

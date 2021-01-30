@@ -10,20 +10,20 @@ class Hand:
     - __dec_hand : int
         decimal representation of binary_hand
 
-    - __bust_points : int
+    - __bust_score : int
         score given to hand if the hand goes bust
 
     - __points : int
     - __score : int
     '''
 
-    def __init__(self, dec_hand = 0, bust_points = -30):
+    def __init__(self, dec_hand = 0, bust_score = -75):
         '''
         parameters:
         - hand : int
             the binary of hand represents the state of the hand. The position of bin(hand) denotes which card had been drawn. The encoding is given by `encoding`.
         '''
-        self.__bust_points = bust_points
+        self.__bust_score = bust_score
         self.__dec_hand = dec_hand
         self.__binary_hand = "0"*(26-len(bin(dec_hand)[2:])) + bin(dec_hand)[2:]
         self.__points = self.__calculate_points()
@@ -75,11 +75,12 @@ class Hand:
         A = int(self.__binary_hand[0])
         B = int(self.__binary_hand[1])
 
-        possible_points = [(A_B + points) for A_B in self.__A_possibilities[(A,B)] if A_B + points < 26]
+        possible_points = [A_B + points for A_B in self.__A_possibilities[(A,B)]]
 
-        if len(possible_points) == 0:
-            return self.__bust_points
+        if all([pt < 26 for pt in possible_points]):
+            return min(possible_points)
 
+        possible_points = [pt for pt in possible_points if pt < 26]
         return max(possible_points)
 
     def __calculate_score(self):
@@ -94,7 +95,7 @@ class Hand:
         elif self.points <= 25:
             return self.__points
         else:
-            return self.__bust_points
+            return self.__bust_score
 
     def draw_card(self):
         '''Randomly draws an extra card
